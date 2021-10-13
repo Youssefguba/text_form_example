@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:text_form_example/sign_up_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,16 +40,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage()
-          )
-        ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
               TextFormField(
                 controller: _emailController,
                 onChanged: (val) {
-                    print('MY input $val');
+                  print('MY input $val');
                 },
                 decoration: InputDecoration(
                   icon: Icon(Icons.person),
@@ -66,12 +61,13 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
-
               ),
               TextButton(
                 child: Text('Login'),
                 onPressed: () {
-                  print(_emailController.text);
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => SignUpScreen()),
+                      (route) => false);
                 },
               ),
             ],
@@ -81,4 +77,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
